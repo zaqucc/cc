@@ -1,0 +1,149 @@
+<div id="wrapper-cc-final" style="all: initial;">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400&display=swap');
+
+        #main-view-cc {
+            position: fixed !important;
+            inset: 0 !important;
+            background: #080808 !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            z-index: 999999999 !important;
+            font-family: 'Inter', sans-serif !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            overflow: hidden !important;
+        }
+
+        /* Kotak Kecil Minimalis */
+        .card-cc {
+            width: 200px; 
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            text-align: center;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            position: absolute; /* Menggunakan absolute agar menumpuk di tengah */
+            z-index: 5;
+            
+            /* Animasi Muncul */
+            opacity: 0;
+            transform: scale(0.9) translateY(20px);
+            transition: all 1.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .card-cc.active {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+
+        /* Visualizer Bar */
+        .visualizer-cc {
+            display: flex;
+            justify-content: center;
+            gap: 4px;
+            height: 18px;
+            margin-bottom: 25px;
+        }
+
+        .bar-cc {
+            width: 2px;
+            background: #ffffff;
+            opacity: 0.6;
+            animation: wave-cc 1s infinite ease-in-out;
+        }
+
+        @keyframes wave-cc {
+            0%, 100% { height: 6px; }
+            50% { height: 18px; }
+        }
+
+        .title-cc { font-size: 0.85rem; letter-spacing: 4px; text-transform: uppercase; color: #ffffff !important; margin: 0; }
+        .subtitle-cc { font-size: 0.6rem; letter-spacing: 3px; margin-top: 12px; opacity: 0.3; text-transform: uppercase; color: #ffffff !important; }
+
+        /* Overlay */
+        #overlay-cc {
+            position: absolute;
+            inset: 0;
+            background: #080808;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* Area klik dinonaktifkan di sini */
+            pointer-events: none; 
+            transition: opacity 1.5s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+
+        .btn-cc {
+            background: none;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            padding: 14px 35px;
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            border-radius: 100px;
+            cursor: pointer;
+            /* Area klik diaktifkan hanya pada tombol */
+            pointer-events: auto; 
+            transition: all 0.4s ease;
+        }
+
+        .btn-cc:hover {
+            background: white;
+            color: black;
+            border-color: white;
+        }
+    </style>
+
+    <div id="main-view-cc">
+        <div id="overlay-cc">
+            <button class="btn-cc" onclick="startExperienceCC()">Experience</button>
+        </div>
+
+        <div class="card-cc" id="card-element">
+            <div class="visualizer-cc">
+                <div class="bar-cc" style="animation-delay: 0.1s;"></div>
+                <div class="bar-cc" style="animation-delay: 0.3s;"></div>
+                <div class="bar-cc" style="animation-delay: 0.2s;"></div>
+            </div>
+            <h1 class="title-cc">Peta Tak Bertuan</h1>
+            <p class="subtitle-cc">Titik Nol</p>
+        </div>
+
+        <audio id="audio-cc" loop preload="auto">
+            <source src="https://files.catbox.moe/ev5src.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <script>
+        function startExperienceCC() {
+            var audio = document.getElementById('audio-cc');
+            var overlay = document.getElementById('overlay-cc');
+            var card = document.getElementById('card-element');
+            
+            // Putar musik
+            audio.play().catch(function() {
+                audio.load();
+                audio.play();
+            });
+
+            // Mulai transisi halus
+            overlay.style.opacity = '0';
+            
+            setTimeout(function() {
+                card.classList.add('active');
+            }, 400); 
+
+            // Hapus overlay total dari interaksi setelah memudar
+            setTimeout(function() {
+                overlay.style.display = 'none';
+            }, 1600);
+        }
+    </script>
+</div>
