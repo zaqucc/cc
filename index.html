@@ -9,30 +9,23 @@
             margin: 0 !important; padding: 0 !important; overflow: hidden !important;
         }
 
-        /* Ukuran Card yang sudah dibesarkan dan responsif */
+        /* UKURAN BARU: Jauh lebih besar & elegan */
         .card-cc {
-            width: 280px; /* Ukuran lebih proporsional */
-            padding: 50px 30px;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.08); 
-            border-radius: 32px;
+            width: 80%; /* Mengikuti lebar layar HP */
+            max-width: 380px; /* Batas maksimal agar tidak terlalu lebar di laptop */
+            padding: 70px 30px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            border-radius: 40px;
             text-align: center; 
-            backdrop-filter: blur(25px); 
-            -webkit-backdrop-filter: blur(25px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.8); 
+            backdrop-filter: blur(30px); 
+            -webkit-backdrop-filter: blur(30px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.7); 
             position: absolute; 
             z-index: 5;
             opacity: 0; 
-            transform: scale(0.8) translateY(30px);
-            transition: all 2s cubic-bezier(0.22, 1, 0.36, 1);
-        }
-
-        /* Responsif untuk layar lebih besar (Laptop) */
-        @media (min-width: 768px) {
-            .card-cc {
-                width: 320px;
-                padding: 60px 40px;
-            }
+            transform: scale(0.8) translateY(40px);
+            transition: all 2.2s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         .card-cc.active { 
@@ -40,50 +33,51 @@
             transform: scale(1) translateY(0); 
         }
 
-        /* Visualizer yang lebih terlihat */
+        /* Visualizer lebih tinggi */
         .visualizer-cc { 
-            display: flex; justify-content: center; gap: 6px; height: 25px; margin-bottom: 35px; 
+            display: flex; justify-content: center; gap: 8px; height: 35px; margin-bottom: 45px; 
         }
         .bar-cc { 
-            width: 3px; background: #ffffff; opacity: 0.7; animation: wave-cc 1s infinite ease-in-out; 
+            width: 4px; background: #ffffff; opacity: 0.8; animation: wave-cc 1.2s infinite ease-in-out; 
         }
         @keyframes wave-cc { 
-            0%, 100% { height: 8px; } 50% { height: 25px; } 
+            0%, 100% { height: 10px; } 50% { height: 35px; } 
         }
 
+        /* Judul Jauh Lebih Besar */
         .title-cc { 
-            font-size: 1.1rem; /* Tulisan diperbesar */
-            letter-spacing: 5px; 
+            font-size: 1.4rem; 
+            letter-spacing: 7px; 
             text-transform: uppercase; 
             color: #fff !important; 
             margin: 0; 
-            font-weight: 400;
+            font-weight: 300;
         }
         .subtitle-cc { 
-            font-size: 0.7rem; 
-            letter-spacing: 4px; 
-            margin-top: 15px; 
+            font-size: 0.8rem; 
+            letter-spacing: 5px; 
+            margin-top: 20px; 
             opacity: 0.4; 
             text-transform: uppercase; 
             color: #fff !important; 
         }
 
+        /* Tombol Masuk */
         #overlay-cc { 
             position: absolute; inset: 0; background: #080808; 
             z-index: 100; display: flex; justify-content: center; 
-            align-items: center; transition: opacity 1.8s cubic-bezier(0.65, 0, 0.35, 1); 
+            align-items: center; transition: opacity 2s cubic-bezier(0.65, 0, 0.35, 1); 
         }
 
         .btn-cc { 
-            background: none; border: 1px solid rgba(255,255,255,0.2); 
-            color: white; padding: 18px 45px; /* Tombol diperbesar */
-            font-size: 0.85rem; letter-spacing: 5px; 
+            background: none; border: 1px solid rgba(255,255,255,0.3); 
+            color: white; padding: 22px 55px;
+            font-size: 1rem; letter-spacing: 6px; 
             text-transform: uppercase; border-radius: 100px; 
-            cursor: pointer; transition: 0.5s cubic-bezier(0.22, 1, 0.36, 1); 
+            cursor: pointer; transition: 0.6s cubic-bezier(0.22, 1, 0.36, 1); 
         }
         .btn-cc:hover { 
-            background: white; color: black; transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(255,255,255,0.1);
+            background: white; color: black; transform: scale(1.1);
         }
     </style>
 
@@ -107,17 +101,11 @@
             var a = document.getElementById('a-cc');
             var o = document.getElementById('overlay-cc');
             var c = document.getElementById('c-cc');
-            
             a.play().catch(function(){ a.load(); a.play(); });
-            
             o.style.opacity = '0';
-            setTimeout(function(){ 
-                c.classList.add('active'); 
-            }, 500);
-            
-            setTimeout(function(){ 
-                o.style.display = 'none'; 
-            }, 2000);
+            setTimeout(function(){ c.classList.add('active'); }, 600);
+            setTimeout(function(){ o.style.display = 'none'; }, 2500);
         }
     </script>
 </div>
+
